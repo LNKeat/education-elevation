@@ -2,7 +2,6 @@ class User < ApplicationRecord
     has_secure_password
 
     def set_tier
-        byebug
         sum = self.donations_sum
         case
         when sum <= 500 
