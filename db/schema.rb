@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_14_205334) do
+ActiveRecord::Schema.define(version: 2023_05_15_200315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(version: 2023_05_14_205334) do
     t.string "first_name"
     t.string "last_name"
     t.text "bio"
-    t.integer "funds_needed"
-    t.integer "funds_raised"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,6 +43,7 @@ ActiveRecord::Schema.define(version: 2023_05_14_205334) do
     t.integer "donations_sum"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "role"
   end
 
   add_foreign_key "programs", "teachers"
