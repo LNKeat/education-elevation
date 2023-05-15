@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :donations
 
     def set_tier
         sum = self.donations_sum

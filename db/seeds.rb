@@ -57,6 +57,13 @@ end
     p4.description = "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
     p4.save
 
+# make donations
+    10.times{
+        u_id = User.all.sample.id
+        p_id = Program.all.sample.id
+        Donation.create(amount:generate_amount, user_id: u_id, program_id: p_id)
+    }    
+
 #makes one admin user
     User.create(first_name: "Laura", last_name: "Keat", email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "admin")
 
