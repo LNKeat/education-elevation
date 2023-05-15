@@ -4,13 +4,13 @@ class UsersController < ApplicationController
         render json: users
     end
 
-    #sign-up
-
+ #sign-up & set session to user
     def create
         user = User.create!(user_params)
         user.donor_tier = user.set_tier
         user.save
-        # TODO: add user to session here
+
+        session[:user_id] = user.id
         render json: user
     end
 
