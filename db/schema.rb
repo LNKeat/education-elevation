@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_15_200315) do
+ActiveRecord::Schema.define(version: 2023_05_15_210854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donations", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id", null: false
+    t.bigint "program_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["program_id"], name: "index_donations_on_program_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
+  end
 
   create_table "programs", force: :cascade do |t|
     t.string "name"
@@ -46,5 +56,7 @@ ActiveRecord::Schema.define(version: 2023_05_15_200315) do
     t.string "role"
   end
 
+  add_foreign_key "donations", "programs"
+  add_foreign_key "donations", "users"
   add_foreign_key "programs", "teachers"
 end

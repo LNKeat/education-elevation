@@ -53,8 +53,8 @@ end
     p3.description = "Great for anyone that loves soccer from beginner to experienced. No try-outs, just come join and play. "
     p3.save
 
-    p4.name = "Debate Team"
-    p4.description = "A challenging environment great for working on public speaking and reasoning under stress."
+    p4.name = "Debate Debacle"
+    p4.description = "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
     p4.save
 
 #makes one admin user
