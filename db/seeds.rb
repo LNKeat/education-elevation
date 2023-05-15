@@ -16,10 +16,10 @@ end
 # makes 10 users that are not admin
 10.times {
     donation = generate_amount()
-    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: donation, role: "donor")
-    user.donor_tier = user.set_tier
-    user.save
+    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "donor")
 }
+#makes one admin user
+User.create(first_name: "Laura", last_name: "Keat", email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "admin")
 
 # makes 4 teachers
 4.times {
@@ -62,9 +62,13 @@ end
         u_id = User.all.sample.id
         p_id = Program.all.sample.id
         Donation.create(amount:generate_amount, user_id: u_id, program_id: p_id)
-    }    
+    }
 
-#makes one admin user
-    User.create(first_name: "Laura", last_name: "Keat", email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "admin")
+#find sum and set tier for donations on each user
+    User.all.each do |user|
+        user.donations_sum = user.find_donations_sum
+        user.donor_tier = user.set_tier
+        user.save
+    end
 
 p "You're killing it, Laura!"

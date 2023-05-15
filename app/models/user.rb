@@ -15,5 +15,13 @@ class User < ApplicationRecord
             "platinum"
         end
     end
+
+    def find_donations_sum 
+        sum = 0
+        self.donations.each do |d|
+            sum += d.amount
+        end
+        sum
+    end
     
 end
