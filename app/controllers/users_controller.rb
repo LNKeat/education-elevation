@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        user.donor_tier = user.set_tier
+        user.save
         # TODO: add user to session here
         render json: user
     end

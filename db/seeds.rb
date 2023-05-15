@@ -1,9 +1,16 @@
-User.create(first_name:"Laura", last_name:"Keat", email: "user@domain.com", password:"dog", password_confirmation:"dog", donations_sum:2000
-)
+5.times{
+    donation = rand(200...10000)
+    user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: donation)
+    user.donor_tier = user.set_tier
+    user.save
+}
+# t.stzring "first_name"
+#     t.string "last_name"
+#     t.string "email"
+#     t.string "password_digest"
+#     t.string "donor_tier"
+#     t.integer "donations_sum"
 
-Teacher.create(first_name: "Cindy", last_name: "Keat", bio: "Horse back riding instructor", funds_needed: "10,000", funds_raised:1500)
 
-t_id = Teacher.last.id
-Program.create(name: "Horse Etiquette", description: "Learn  how to interact safely with horses", teacher_id: t_id, funds_needed: 15000, funds_raised: 1700)
 
-p "You're killing it!"
+p "You're killing it, Laura!"
