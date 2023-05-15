@@ -10,6 +10,12 @@ class TeachersController < ApplicationController
         render json: teacher
     end
 
+    def destroy
+        teacher = Teacher.find(params[:id])
+        teacher.destroy
+        head :no_content
+    end
+
 
     private
 
