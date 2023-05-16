@@ -13,11 +13,11 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navba r-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#teachers">Teachers</Nav.Link>
-            <Nav.Link href="#programs">Programs</Nav.Link>
-            <Nav.Link href="#donate">Donate</Nav.Link>
-            <Nav.Link href="#account">Profile</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/teachers">Teachers</Nav.Link>
+            <Nav.Link href="/programs">Programs</Nav.Link>
+            <Nav.Link href="/donate">Donate</Nav.Link>
+            <Nav.Link href="/account">Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Image rounded src={logo} width={100} height={100} />
