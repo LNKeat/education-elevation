@@ -9,7 +9,7 @@ function Home() {
         <h2 style={{padding:"40px"}}>Please Log in or Sign up</h2>
         <Login />
         <br />
-        <Signup />
+        {/* <Signup /> */}
     </Container>
   )
 }
