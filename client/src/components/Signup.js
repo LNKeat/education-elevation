@@ -11,6 +11,8 @@ const intialState = {
 }
 
 // TODO: set default for role to donor on server side
+//handle errors
+//set validations
 function Signup() {
     const [formData, setFormData] = useState(intialState)
     const [errors, setErrors] = useState([])

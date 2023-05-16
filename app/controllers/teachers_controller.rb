@@ -20,6 +20,6 @@ class TeachersController < ApplicationController
     private
 
     def teacher_params 
-        params.permit(:first_name, :last_name, :bio, :funds_raised, :funds_needed)
+        params.permit(:first_name, :last_name, :bio)
     end
 end
