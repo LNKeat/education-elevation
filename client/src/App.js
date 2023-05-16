@@ -16,11 +16,13 @@ import AdminForm from "./pages/AdminForm";
 import Logout from "./components/Logout";
 
 export const UserContext = React.createContext();
-export const SetUserContext = React.createContext();
+// export const SetUserContext = React.createContext();
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
+  const userState = useState(null)
+  const [user, setUser] = userState
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -33,9 +35,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <UserContext.Provider value={user}>
-      <SetUserContext.Provider value={setUser}>
-
+      <UserContext.Provider value={userState}>
         <header className="App-header">
           <Header />
           {user && <Logout setUser={setUser} />}
@@ -50,7 +50,6 @@ function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/admin-form" element={<AdminForm />} />
         </Routes>
-        </SetUserContext.Provider>
         </UserContext.Provider> 
       </BrowserRouter>
     </div>

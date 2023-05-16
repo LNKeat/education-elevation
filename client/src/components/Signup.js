@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Container from 'react-bootstrap/esm/Container'
+import { UserContext } from '../App'
+
 
 const intialState = {
     first_name: "",
@@ -16,6 +18,7 @@ const intialState = {
 function Signup() {
     const [formData, setFormData] = useState(intialState)
     const [errors, setErrors] = useState([])
+    const [_, setUser] = useContext(UserContext)
 
     function handleChange(e) {
         setFormData({
@@ -34,7 +37,7 @@ function Signup() {
             body: JSON.stringify(formData)
         })
         .then((r) => r.json())
-        .then((data) => console.log("success!", data))
+        .then((user) =>  setUser(user))
     }
 
     return (

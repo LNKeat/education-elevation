@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
+import Program from '../components/Program'
 
 //TODO: map out cards with each program listed and details
 //add donate now button to each card that goes to the donation form

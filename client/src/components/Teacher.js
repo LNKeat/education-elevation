@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/esm/Button';
 
 function Teacher({ teacher, pic }) {
     return (
-        <Container className='flex'>
+        <Container fluid>
         <Card style={{ width: '18rem', margin:"20px" }}>
           <Card.Img variant="top" src={pic} styles={{backgroundColor:"#275251"}} />
           <Card.Body>

@@ -1,11 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Container from 'react-bootstrap/esm/Container'
+import { UserContext } from '../App';
 
 
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [_, setUser] = useContext(UserContext)
 
 
     function handleSubmit(e) {
@@ -18,7 +20,7 @@ function Login() {
             body: JSON.stringify({ email, password }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((user) => console.log("user logged in", user));
+                r.json().then((user) => setUser(user));
 
             } else {
                 r.json().then((details) => console.log(details.errors))

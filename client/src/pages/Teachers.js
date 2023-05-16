@@ -6,7 +6,7 @@ import TeacherTwo from '../assets/images/Teacher_2.jpg'
 import TeacherThree from '../assets/images/Teacher_3.jpg'
 import TeacherFour from '../assets/images/Teacher_4.jpg'
 
-//TODO: map out list of teachers with their names & bios and a list of the programs they manage
+//TODO: fix container to show multiple cards per line
 
 const teachers_images = [TeacherOne, TeacherTwo, TeacherFour, TeacherThree]
 
@@ -21,7 +21,7 @@ function Teachers() {
   
 
   return (
-    <Container fluid="md">
+    <Container fluid>
         <h1>Teachers</h1>
         {teachers.map(( (t, ind) =>
           <Teacher key={ind} teacher={t} pic={teachers_images[ind] } />

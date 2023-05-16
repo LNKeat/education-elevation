@@ -1,40 +1,53 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { Link } from 'react-router-dom'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 import { UserContext } from '../App'
 
-// TODO: set useContext in here? so that component updates when a user logs in or out
+const component = {
+  login:"login",
+  signup:"signup",
+  home:"home"
+}
+
 
 function Home() {
-  const [viewLogin, setViewLogin] = useState(true)
-  const user = useContext(UserContext)
+  const [view, setView] = useState(component.login)
+  const [user] = useContext(UserContext)
 
-  function handleToggleClick() {
-    const view = viewLogin
-    setViewLogin(!view)
+  useEffect(() => {
+    setView(component.login)
+  }, [user])
+  
+
+  function handleLoginClick() {
+    setView(component.login)
+  }
+  function handleSignupClick() {
+    setView(component.signup)
   }
 
   return (
     <Container>
       {!user ?
         <div>
-          {viewLogin ? (
+          {view === component.login ? (
             <div>
-              <Link style={{ color: "#275251", textDecoration: "underline", cursor: "pointer" }} onClick={handleToggleClick}>Sign up for an account</Link>
+              <Link style={{ color: "#275251", textDecoration: "underline", cursor: "pointer" }} onClick={handleSignupClick}>Sign up for an account</Link>
               <Login />
 
             </div>
           ) : (
             <div>
-              <Link style={{ color: "#275251", textDecoration: "underline", cursor: "pointer" }} onClick={handleToggleClick}>Log in to your account</Link>
+              <Link style={{ color: "#275251", textDecoration: "underline", cursor: "pointer" }} onClick={handleLoginClick}>Log in to your account</Link>
               <Signup />
             </div>
           )}
         </div> :
         <Container>
           <h3>Welcome {user.first_name}</h3>
+          <p>welcome message</p>
         </Container>}
 
 
