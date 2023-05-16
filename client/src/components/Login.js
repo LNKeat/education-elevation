@@ -7,9 +7,25 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    function handleSubmit(e){
+
+    function handleSubmit(e) {
         e.preventDefault()
-        console.log("submitted")
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+        }).then((r) => {
+            if (r.ok) {
+                r.json().then((user) => console.log(user));
+
+            } else {
+                r.json().then((details) => console.log(details.errors))
+            }
+            // setEmail("")
+            // setPassword("")
+        });
     }
 
     return (
@@ -23,10 +39,11 @@ function Login() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" className="form-control" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
             </form>
+            
         </Container>
     )
 }

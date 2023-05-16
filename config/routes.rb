@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :teachers
   resources :users, only: [:index, :create]
 
+  post "/login", to: "sessions#create"
 end
