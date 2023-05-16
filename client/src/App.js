@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -14,7 +14,18 @@ import Profile from "./pages/Profile";
 import Donate from "./pages/Donate";
 import AdminForm from "./pages/AdminForm";
 
+
 function App() {
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
