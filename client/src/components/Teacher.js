@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/esm/Button';
 // TODO: get teachers to line up 2 cards per column
 
 function Teacher({ teacher, pic }) {
-    console.log(teacher)
     return (
         <Container className='flex'>
         <Card style={{ width: '18rem', margin:"20px" }}>

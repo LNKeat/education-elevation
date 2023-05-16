@@ -7,8 +7,9 @@ class UsersController < ApplicationController
  #sign-up & set session to user
     def create
         user = User.create!(user_params)
-        user.donations_sum = user.find_donations_sum
-        user.donor_tier = user.set_tier
+        # user.donations_sum = user.find_donations_sum
+        # user.donor_tier = user.set_tier
+        user.role = user.set_admin_role
         user.save
 
         session[:user_id] = user.id
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:first_name, :last_name, :password, :password_confirmation, :email, :role)
+        params.permit(:first_name, :last_name, :password, :password_confirmation, :email)
     end
 end
