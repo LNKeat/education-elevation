@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/esm/Container';
 
 // #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
 function Donate({ program, programs }) {
-  const [amount, setAmount] = useState(null)
+  const [amount, setAmount] = useState(100)
   const [donationSum, setDonationSum] = useState()
   const [initProgram, setInitProgram] = useState(program) 
   const [filteredPrograms, setFilteredPrograms] = useState([])
@@ -35,7 +35,7 @@ function Donate({ program, programs }) {
             <div className='form-group' styles={{marginBottom:"20px"}}>
               <label htmlFor="Program">Select a program:</label>
               <select id="program" aria-label="Choose a program" onChange={(e) => setInitProgram(e.target.value)}>
-                <option selected value={initProgram.id}>{initProgram.name}</option>
+                <option value={initProgram.id}>{initProgram.name}</option>
                 {programs && filteredPrograms.map((p) => (
                   <option key={p.id} value={p}>{p.name}</option>
                 ))}
