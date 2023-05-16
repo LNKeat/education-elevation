@@ -10,9 +10,10 @@ const intialState = {
     role:"donor"
 }
 
-// TODO: make controlled components, add handle submit & fetch
+// TODO: set default for role to donor on server side
 function Signup() {
     const [formData, setFormData] = useState(intialState)
+    const [errors, setErrors] = useState([])
 
     function handleChange(e) {
         setFormData({
@@ -21,10 +22,23 @@ function Signup() {
         });
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch ('/signup', {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+        .then((r) => r.json())
+        .then((data) => console.log("success!", data))
+    }
+
     return (
         <Container>
             <h4 style={{marginTop:"20px"}}>Please create an account</h4>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
                     <input type="text" className="form-control" id="first_name" aria-describedby="name" placeholder="Enter first name" value={formData.first_name} onChange={handleChange} />
