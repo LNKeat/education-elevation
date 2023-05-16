@@ -6,12 +6,12 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: true
 
-    admins = ["laura@laura.com", "andrew@scaduts.com"]
+    @@admins = ["laura@laura.com", "andrew@scaduts.com"]
+
 
     def set_admin_role 
         role = ""
-        debugger
-        if self.email.in?(admins)
+        if self.email.in?(@@admins)
              role = "admin"
         else
              role = "donor"
