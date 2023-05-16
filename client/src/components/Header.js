@@ -18,7 +18,7 @@ function Header() {
             <Nav.Link href="/teachers">Teachers</Nav.Link>
             <Nav.Link href="/programs">Programs</Nav.Link>
             <Nav.Link href="/donate">Donate</Nav.Link>
-            <Nav.Link href="/account">Profile</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Image rounded src={logo} width={100} height={100} />
