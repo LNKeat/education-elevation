@@ -10,7 +10,7 @@ function Header() {
   return (
     <Navbar expand="lg">
       <Container>
-        <Navbar.Brand href="#home" style={{color:"#275251"}}>Education Elevation</Navbar.Brand>
+        <Navbar.Brand href="/" style={{color:"#275251"}}>Education Elevation</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navba r-nav">
           <Nav className="me-auto">
