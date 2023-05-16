@@ -38,7 +38,8 @@ function App() {
 
         <header className="App-header">
           <Header />
-          <Logout setUser={setUser} />
+          {user && <Logout setUser={setUser} />}
+          
           
         </header>
         <Routes>

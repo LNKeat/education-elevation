@@ -18,7 +18,7 @@ function Login() {
             body: JSON.stringify({ email, password }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((user) => console.log(user));
+                r.json().then((user) => console.log("user logged in", user));
 
             } else {
                 r.json().then((details) => console.log(details.errors))

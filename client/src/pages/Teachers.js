@@ -1,5 +1,6 @@
 import React from 'react'
 
+//TODO: map out list of teachers with their names & bios and a list of the programs they manage
 function Teachers() {
   return (
     <div>
