@@ -19,7 +19,7 @@ end
     user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "donor")
 }
 #makes one admin user
-User.create(first_name: "Laura", last_name: "Keat", email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0, role: "admin")
+User.create(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", password: "cat", password_confirmation:"cat", donations_sum: 0, role: "admin")
 
 # makes 4 teachers
 4.times {

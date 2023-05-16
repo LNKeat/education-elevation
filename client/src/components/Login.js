@@ -7,9 +7,14 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log("submitted")
+    }
+
     return (
         <Container>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>
                     <input type="email" className="form-control" id="email" aria-describedby="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -18,7 +23,7 @@ function Login() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" />
+                    <input type="password" className="form-control" id="password" placeholder="Password"  value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
             </form>
