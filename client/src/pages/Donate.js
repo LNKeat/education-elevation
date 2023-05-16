@@ -3,13 +3,16 @@ import { UserContext } from '../App';
 import Container from 'react-bootstrap/esm/Container';
 
 // #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
-function Donate() {
+function Donate({ program }) {
   const [amount, setAmount] = useState(null)
   const [donationSum, setDonationSum] = useState()
+  const [initProgram, setInitProgram] = useState("") 
   const [user, setUser] = useContext(UserContext)
+  
 
   useEffect(() => {
     user && setDonationSum(user.donations_sum)
+    program && setInitProgram(program.name)
   }, [user])
 
 
@@ -29,7 +32,7 @@ function Donate() {
           <form onSubmit={handleSubmit}>
             <div className='form-group' styles={{marginBottom:"20px"}}>
               <select className="form-select" aria-label="Default select example">
-                <option selected>Please select a program</option>
+                <option selected>{initProgram}</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/esm/Container';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/esm/Button';
 
 // TODO: get teachers to line up 2 cards per column
 
