@@ -6,7 +6,7 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :email, presence: true, uniqueness: true
 
-    @@admins = ["laura@laura.com", "andrew@scaduts.com"]
+    @@admins = ["laura@laura.com", "admin@admin.com"]
 
 
     def set_admin_role 

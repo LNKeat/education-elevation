@@ -2,21 +2,22 @@
 
 ## Description
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Render.
+Raise funds for extra-curricular programs at a school. This application is meant for users to donate to programs that they find valuable and read a little about the teachers that will be managing those programs. 
+### Users can: 
+* sign up/Log in
+* view list of teachers
+* view list of programs
+* donate to a program- if signed in
 
-**Note**: if you are not planning to deploy your app to Render and prefer to use
-SQLite, you will need to make the following changes in the project files:
+### Admins can: 
+CREATE, READ, UPDATE & DELETE Programs
 
-1. In the `Gemfile`, replace `gem 'pg', '~> 1.1'` with `gem 'sqlite3', '~>
-   1.4'`.
-2. In the `database.yml` file, change the line `adapter: postgresql` to
-   `adapter: sqlite3`.
 
 ## Requirements
 
 - Ruby 2.7.4
-- NodeJS (v16), and npm
+- NodeJS (v16), and npm besure to install and run
+```nvm use 16.13.0```
 - Render account
 - Postgresql
 
@@ -41,15 +42,6 @@ check any of the options such as 'Add a README file', 'Add a .gitignore file',
 etc. — since you're importing an existing repository, creating any of those
 files on GitHub will cause issues.
 
-[create repo]: https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line#adding-a-project-to-github-without-github-cli
-
-If you're working with a partner,
-[add them as a collaborator][add collaborator] on GitHub. From your repo on
-GitHub, go to Settings > Manage Access > Invite a collaborator and enter your
-partner's username. Once your partner has access, they should git **clone** (not
-fork) the repository.
-
-[add collaborator]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository
 
 Finally, connect the GitHub remote repository to your local repository and push
 up your code:
@@ -70,13 +62,10 @@ npm install --prefix client
 You can use the following commands to run the application:
 
 - `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
+- `nvm use 16.13.0` : to run the older version of Node
 - `npm start --prefix client`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
 
-Make sure to also update this README to include documentation about
-your project. Here's a list of some [awesome readmes][] for inspiration.
-
-[awesome readmes]: https://github.com/matiassingers/awesome-readme
 
 ## Deploying
 
