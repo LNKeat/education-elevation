@@ -16,13 +16,15 @@ import AdminForm from "./pages/AdminForm";
 import Logout from "./components/Logout";
 
 export const UserContext = React.createContext();
-// export const SetUserContext = React.createContext();
+export const ProgramsContext = React.createContext();
 
 
 function App() {
-  // const [user, setUser] = useState(null)
   const userState = useState(null)
   const [user, setUser] = userState
+  const programsState = useState(null)
+  const [programs, setPrograms] = programsState
+  
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -30,12 +32,17 @@ function App() {
         response.json().then((user) => setUser(user));
       }
     });
+
+    fetch('/programs')
+      .then((r) => r.json())
+      .then((data) => setPrograms(data))
   }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
       <UserContext.Provider value={userState}>
+      <ProgramsContext.Provider value={programsState}>
         <header className="App-header">
           <Header />
           {user && <Logout setUser={setUser} />}
@@ -47,9 +54,10 @@ function App() {
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/donate" element={<Donate />} />
+          <Route path="/donate" element={<Donate programs={programs} />} />
           <Route path="/admin-form" element={<AdminForm />} />
         </Routes>
+        </ProgramsContext.Provider>
         </UserContext.Provider> 
       </BrowserRouter>
     </div>
