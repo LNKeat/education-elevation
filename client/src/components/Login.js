@@ -23,8 +23,8 @@ function Login() {
             } else {
                 r.json().then((details) => console.log(details.errors))
             }
-            // setEmail("")
-            // setPassword("")
+            setEmail("")
+            setPassword("")
         });
     }
 

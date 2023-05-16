@@ -13,10 +13,11 @@ import Programs from "./pages/Programs";
 import Profile from "./pages/Profile";
 import Donate from "./pages/Donate";
 import AdminForm from "./pages/AdminForm";
+import Logout from "./components/Logout";
 
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -32,6 +33,8 @@ function App() {
 
         <header className="App-header">
           <Header />
+          {user && <Logout setUser={setUser} />}
+          
         </header>
         <Routes>
           <Route path="/" element={<Home />} />
