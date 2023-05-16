@@ -3,16 +3,18 @@ import { UserContext } from '../App';
 import Container from 'react-bootstrap/esm/Container';
 
 // #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
-function Donate({ program }) {
+function Donate({ program, programs }) {
   const [amount, setAmount] = useState(null)
   const [donationSum, setDonationSum] = useState()
-  const [initProgram, setInitProgram] = useState("") 
-  const [user, setUser] = useContext(UserContext)
+  const [initProgram, setInitProgram] = useState(program) 
+  const [filteredPrograms, setFilteredPrograms] = useState([])
+  const [user] = useContext(UserContext)
   
 
   useEffect(() => {
     user && setDonationSum(user.donations_sum)
-    program && setInitProgram(program.name)
+    program && setInitProgram(program)
+    program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
   }, [user])
 
 
@@ -26,16 +28,18 @@ function Donate({ program }) {
   }
   return (
     <Container>
-      {user ?
+      {user && program ?
         <>
           <h1>Donate here {user.first_name}</h1>
           <form onSubmit={handleSubmit}>
             <div className='form-group' styles={{marginBottom:"20px"}}>
-              <select className="form-select" aria-label="Default select example">
-                <option selected>{initProgram}</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <label htmlFor="Program">Select a program:</label>
+              <select id="program" aria-label="Choose a program" onChange={(e) => setInitProgram(e.target.value)}>
+                <option selected value={initProgram.id}>{initProgram.name}</option>
+                {programs && filteredPrograms.map((p) => (
+                  <option key={p.id} value={p}>{p.name}</option>
+                ))}
+                
               </select>
             </div>
             <div className="form-group">

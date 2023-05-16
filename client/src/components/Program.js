@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/esm/Button';
 import Donate from '../pages/Donate';
 
 
-function Program({ program }) {
+function Program({ program, programs }) {
     const [viewForm, setViewForm] = useState(false)
 
   return (
@@ -19,7 +19,7 @@ function Program({ program }) {
             <Button onClick={() => setViewForm(!viewForm)} style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Donate</Button>
           </Card.Body>
         </Card>
-        {viewForm && <Donate program={program} />}
+        {viewForm && <Donate program={program} programs={programs} />}
         
         </Container>
   )
