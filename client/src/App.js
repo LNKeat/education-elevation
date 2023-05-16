@@ -15,8 +15,8 @@ import Donate from "./pages/Donate";
 import AdminForm from "./pages/AdminForm";
 import Logout from "./components/Logout";
 
-// export const UserContext = React.createContext();
-// export const SetUserContext = React.createContext();
+export const UserContext = React.createContext();
+export const SetUserContext = React.createContext();
 
 
 function App() {
@@ -33,12 +33,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* <UserContext.Provider value={user}>
-      <SetUserContext.Provider value={setUser}> */}
+      <UserContext.Provider value={user}>
+      <SetUserContext.Provider value={setUser}>
 
         <header className="App-header">
           <Header />
-          {user && <Logout setUser={setUser} />}
+          <Logout setUser={setUser} />
           
         </header>
         <Routes>
@@ -49,8 +49,8 @@ function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/admin-form" element={<AdminForm />} />
         </Routes>
-        {/* </SetUserContext.Provider>
-        </UserContext.Provider>  */}
+        </SetUserContext.Provider>
+        </UserContext.Provider> 
       </BrowserRouter>
     </div>
   );

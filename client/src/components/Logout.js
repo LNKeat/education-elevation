@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import Button from 'react-bootstrap/Button';
+import { SetUserContext } from '../App';
 
-function Logout({ setUser }) {
+function Logout() {
+    const setUser = useContext(SetUserContext)
 
     function handleLogoutClick() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
