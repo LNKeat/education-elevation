@@ -36,7 +36,7 @@ function App() {
     fetch('/programs')
       .then((r) => r.json())
       .then((data) => setPrograms(data))
-  }, []);
+  }, [setUser, setPrograms]);
 
   return (
     <div className="App" style={{backgroundColor:"#ece0cd"}}>

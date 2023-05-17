@@ -1,14 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { UserContext } from '../App';
+import { ProgramsContext, UserContext } from '../App';
 import Container from 'react-bootstrap/esm/Container';
 
 // #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
-function Donate({ program, programs }) {
+function Donate({ program }) {
   const [amount, setAmount] = useState(100)
   const [donationSum, setDonationSum] = useState()
   const [initProgram, setInitProgram] = useState(program)
   const [filteredPrograms, setFilteredPrograms] = useState([])
   const [user] = useContext(UserContext)
+  const [programs] = useContext(ProgramsContext)
 
 
   useEffect(() => {
@@ -16,6 +17,13 @@ function Donate({ program, programs }) {
     program && setInitProgram(program)
     program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
   }, [user])
+
+  console.log("program: ", program, "programs: ", programs)
+
+  function handleSelectChange(e){
+    program = programs.find((p) => p.id == e.target.value)
+    setInitProgram(program)
+  }
 
 
   function handleSubmit(e) {
@@ -37,17 +45,17 @@ function Donate({ program, programs }) {
               <label htmlFor="Program">Select a program:</label>
               {/* if the user arrived at the form from program component */}
               {program ?
-                <select id="program" aria-label="Choose a program" onChange={(e) => setInitProgram(e.target.value)}>
+                <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                   <option value={initProgram.id}>{initProgram.name}</option>
-                  {programs && filteredPrograms.map((p) => (
-                    <option key={p.id} value={p}>{p.name}</option>
-                  ))}
+                  {/* {programs && filteredPrograms.map((p) => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))} */}
                 </select> :
 
                 // if the user comes from the donate page map all programs
-                <select id="program" aria-label="Choose a program" onChange={(e) => setInitProgram(e.target.value)}>
+                <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                   {programs && programs.map((p) => (
-                    <option key={p.id} value={p}>{p.name}</option>
+                    <option key={p.id} value={p.id}>{p.name}</option>
                   ))}
 
                 </select>
