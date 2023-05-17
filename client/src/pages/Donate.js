@@ -16,23 +16,60 @@ function Donate({ program }) {
     user && setDonationSum(user.donations_sum)
     program && setInitProgram(program)
     program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
-  }, [user])
-
-  console.log("program: ", program, "programs: ", programs)
+  }, [user, program, programs])
 
   function handleSelectChange(e){
-    program = programs.find((p) => p.id == e.target.value)
+    const program = programs.find((p) => p.id == e.target.value)
     setInitProgram(program)
   }
 
 
   function handleSubmit(e) {
     e.preventDefault()
+    console.log("Amount: ", amount, "program id: ", initProgram.id, "user id: ", user.id )
     //post donation to program
     //post new donations_sum to user
-    const newSum = donationSum + amount
+    fetch('/donations', {
+      method: 'POST', 
+      headers: {
+        "Content-Type":"application/json", 
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        program_id: initProgram.id,
+        amount: amount
+      }),
+    })
+    .then((r) => {
+      if (r.ok) {
+        postUser()
+      } else {
+        r.json().then((details) => console.log("errors: ", details.errors))
+      }
+    })
+  }
 
-    console.log("Amount: ", amount, "program id: ", initProgram.id, "user id: ", user.id )
+  function postUser() {
+    const newSum = donationSum + amount
+    console.log("newsum= ", newSum)
+    // fetch(`/users/${user.id}`, {
+    //   method: 'POST', 
+    //   headers: {
+    //     "Content-Type":"application/json", 
+    //   },
+    //   body: JSON.stringify({
+    //     user_id: user.id,
+    //     program_id: initProgram.id,
+    //     amount: amount
+    //   }),
+    // })
+    // .then((r) => {
+    //   if (r.ok) {
+    //     console.log("response:", r)
+    //   } else {
+    //     r.json().then((details) => console.log("errors: ", details.errors))
+    //   }
+    // })
   }
   return (
     <Container>
@@ -42,23 +79,28 @@ function Donate({ program }) {
 
           <form onSubmit={handleSubmit}>
             <div className='form-group' styles={{ marginBottom: "20px" }}>
-              <label htmlFor="Program">Select a program:</label>
               {/* if the user arrived at the form from program component */}
               {program ?
+              <>
+              <label htmlFor="Program">Program:</label>
                 <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                   <option value={initProgram.id}>{initProgram.name}</option>
                   {/* {programs && filteredPrograms.map((p) => (
                     <option key={p.id} value={p.id}>{p.name}</option>
                   ))} */}
-                </select> :
+                </select>
+                </> :
 
                 // if the user comes from the donate page map all programs
+                <>
+                <label htmlFor="Program">Select a program:</label>
                 <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                   {programs && programs.map((p) => (
                     <option key={p.id} value={p.id}>{p.name}</option>
                   ))}
 
                 </select>
+                </>
               }
             </div>
             <div className="form-group">
