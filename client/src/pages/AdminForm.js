@@ -38,6 +38,23 @@ function AdminForm({ program }) {
 
     if (program) {
       console.log("update")
+      fetch(`/programs/${program.id}`, {
+        method: 'PATCH',
+        headers: {"content-type" : "application/json", },
+        body: JSON.stringify({
+          description: programDesc,
+          funds_needed: fundsNeeded,
+          teacher_id: teacherId,
+        })
+      })
+      .then((r) => {
+        if(r.ok) {
+          r.json().then((data) => console.log("patched response: ", data))
+        } else {
+          r.json()
+                .then((details) => console.log(details.errors))
+        }
+      })
     } else {
       // create new program fetch
       console.log("post")
