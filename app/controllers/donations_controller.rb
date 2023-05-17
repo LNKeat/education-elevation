@@ -7,6 +7,14 @@ class DonationsController < ApplicationController
 
     def create
         donation = Donation.create!(params_permit)
+        program = donation.program
+        donor = donation.user
+        donor.donations_sum = donor.find_donations_sum
+        donor.donor_tier = donor.set_tier
+        program.funds_raised = program.find_funds_raised
+        donor.save
+        program.save
+        byebug
         render json: donation, status: :created
     end
 

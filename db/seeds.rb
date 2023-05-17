@@ -1,7 +1,7 @@
 #creates an amount for a donation, funds raised or funds needed
-def generate_amount
+def generate_amount(n)
     num = rand(2...10)
-    num * 100
+    num * n
 end
 
 #creates a bio for teachers
@@ -15,7 +15,7 @@ end
 
 # makes 10 users that are not admin
 10.times {
-    donation = generate_amount()
+    # donation = generate_amount(10)
     user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "cat", password_confirmation:"cat", donations_sum: 0)
 }
 #makes one admin user
@@ -30,10 +30,9 @@ User.create!(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", p
 
 # makes 3 programs
 4.times {
-    needed = generate_amount()
-    raised = needed/rand(1..4)
+    needed = generate_amount(100)
     t_id = Teacher.all.sample.id 
-    Program.create!(teacher_id: t_id, funds_needed: needed, funds_raised: raised)
+    Program.create!(teacher_id: t_id, funds_needed: needed)
 }
 
     p1 = Program.first
@@ -61,7 +60,7 @@ User.create!(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", p
     10.times{
         u_id = User.all.sample.id
         p_id = Program.all.sample.id
-        Donation.create(amount:generate_amount, user_id: u_id, program_id: p_id)
+        Donation.create(amount:generate_amount(10), user_id: u_id, program_id: p_id)
     }
 
 #find sum and set tier for donations on each user
@@ -69,6 +68,12 @@ User.create!(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", p
         user.donations_sum = user.find_donations_sum
         user.donor_tier = user.set_tier
         user.save
+    end
+
+#find funds raised for each program
+    Program.all.each do |program|
+        program.funds_raised = program.find_funds_raised
+        program.save
     end
 
 p "You're killing it, Laura!"

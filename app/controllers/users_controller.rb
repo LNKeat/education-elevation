@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+# TODO: create a show action to update the user's donations_sum
+
     def index
         users = User.all
         render json: users
