@@ -11,6 +11,7 @@ function AdminForm({ program }) {
   const [programDesc, setProgramDesc] = useState("")
   const [fundsNeeded, setFundsNeeded] = useState(0)
   const [teacherId, setTeacherId] = useState(0)
+  const [teachers, setTeachers] = useState([])
 
   useEffect(() => {
     programs && setInitProgram(programs[0])
@@ -20,7 +21,11 @@ function AdminForm({ program }) {
     program && setFundsNeeded(program.funds_needed)
     program && setTeacherId(program.teacher.id)
     programs && program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
-    
+
+    fetch('/teachers')
+      .then((r) => r.json())
+      .then((data) => setTeachers(data))
+
   }, [program, programs])
 
   function handleSelectChange(e) {
@@ -30,17 +35,17 @@ function AdminForm({ program }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    program ?
-    // create update program fetch
-      console.log("update"): 
 
+    if (program) {
+      console.log("update")
+    } else {
       // create new program fetch
       console.log("post")
-      fetch('/programs',{
+      fetch('/programs', {
         method: 'POST',
         headers: {
-          'content-type' : 'application/json'
-        }, 
+          'content-type': 'application/json'
+        },
         body: JSON.stringify({
           name: programName,
           description: programDesc,
@@ -49,25 +54,25 @@ function AdminForm({ program }) {
           funds_raised: 0
         })
       })
-      .then((r) => {
-        if (r.ok){
-          r.json().then((data) => console.log("post response data", data))
-        } else {
-          r.json().then((data) => console.log("bad response"))
-        }
-      })
-    
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((data) => console.log("post response data", data))
+          } else {
+            r.json().then((data) => console.log("bad response"))
+          }
+        })
+    }
   }
 
   return (
     <Container style={{ padding: "20px" }}>
       <form onSubmit={handleSubmit}>
         <div className='form-group' styles={{ marginBottom: "20px" }}>
-          
+
           {/* if the user arrived at the form from program component */}
           {program ?
             <>
-            <h2>Update Program Form</h2>
+              <h2>Update Program Form</h2>
               <label htmlFor="Program">Program:</label>
               <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                 <option value={initProgram.id}>{initProgram.name}</option>
@@ -76,33 +81,40 @@ function AdminForm({ program }) {
 
             // if the user comes from the admin-page create a program
             <>
-                <h2>New Program Form</h2>
+              <h2>New Program Form</h2>
               {/* new program name */}
               <label htmlFor="programName">Program Name:</label>
-              <input type="text" id="programName" placeholder="Enter new program name" value={programName} onChange={(e) => setProgramName(e.target.value)} style={{width:"200px"}} />
-              </>
+              <input type="text" id="programName" placeholder="Enter new program name" value={programName} onChange={(e) => setProgramName(e.target.value)} style={{ width: "200px" }} />
+            </>
           }
-              {/* program funds needed */}
-              <label style={{ paddingLeft: "10px" }} htmlFor="fundsNeeded">Funds Needed:</label>
-              <input type="number" id="fundsNeeded" placeholder="Funds needed for program" value={fundsNeeded} onChange={(e) => setFundsNeeded(e.target.value)} style={{width:"200px"}} />
+          {/* program funds needed */}
+          <label style={{ paddingLeft: "10px" }} htmlFor="fundsNeeded">Funds Needed:</label>
+          <input type="number" id="fundsNeeded" placeholder="Funds needed for program" value={fundsNeeded} onChange={(e) => setFundsNeeded(e.target.value)} style={{ width: "200px" }} />
 
 
-              {/* program desription */}
-              <div style={{marginTop:"20px"}}>
-              <label htmlFor="programDesc">Program Description:</label>
-              <textarea type="text" id="programDesc" placeholder="Enter program description" value={programDesc} onChange={(e) => setProgramDesc(e.target.value)} style={{width:"480px"}} />
-              </div>
+          {/* program desription */}
+          <div style={{ marginTop: "20px" }}>
+            <label htmlFor="programDesc">Program Description:</label>
+            <textarea type="text" id="programDesc" placeholder="Enter program description" value={programDesc} onChange={(e) => setProgramDesc(e.target.value)} style={{ width: "480px" }} />
+          </div>
 
-              {/* program teacher */}
-              <br />
-              <div style={{marginTop:"20px"}}>
-              <label htmlFor="teacherId">Program Teacher:</label>
-              <input type="number" id="teacherId" placeholder="Enter Teacher Id" value={teacherId} onChange={(e) => setTeacherId(e.target.value)} />
-              </div>
-           
+          {/* program teacher */}
+          <br />
+          <div style={{ marginTop: "20px" }}>
+            <label htmlFor="teacherId">Program Teacher:</label>
+            <input type="number" id="teacherId" placeholder="Enter Teacher Id" value={teacherId} onChange={(e) => setTeacherId(e.target.value)} />
+          </div>
+
         </div>
         <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
       </form>
+      {teachers &&
+        <Container style={{ margin: "20px" }}>
+          <h4>Teacher ids: </h4>
+          <ul>
+            {teachers.map((t) => <li key={t.id}>{t.first_name} {t.last_name}, id: {t.id}</li>)}
+          </ul>
+        </Container>}
     </Container>
   )
 }
