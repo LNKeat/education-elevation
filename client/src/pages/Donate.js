@@ -71,9 +71,6 @@ function Donate({ program }) {
                         <label htmlFor="Program">Program:</label>
                         <select id="program" aria-label="Choose a program" onChange={handleSelectChange}>
                           <option value={initProgram.id}>{initProgram.name}</option>
-                          {/* {programs && filteredPrograms.map((p) => (
-                    <option key={p.id} value={p.id}>{p.name}</option>
-                  ))} */}
                         </select>
                       </> :
 
