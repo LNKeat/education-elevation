@@ -13,7 +13,7 @@ function Teacher({ teacher, pic }) {
             <Card.Title>{teacher.first_name} {teacher.last_name}</Card.Title>
             <Card.Text>
               {teacher.bio}
-              {teacher.programs.length > 0 && <h6>Programs:</h6>}
+              {teacher.programs.length > 0 && <div style={{color:"#275251", fontFamily: 'League Spartan'}}><strong>Programs:</strong></div>}
               <ul>
                 {teacher.programs.map((p) => <li key={p.name}>{p.name}</li>)}
               </ul>

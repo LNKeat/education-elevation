@@ -8,7 +8,7 @@ function Profile() {
   const [user] = useContext(UserContext)
 
   return (
-    <div>
+    <div style={{backgroundColor:"#ece0cd"}}>
       <h1>Profile</h1>
       {user && 
       <Container>

@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  background-color: #ece0cd
 }
 
 *,
@@ -16,6 +17,7 @@ html {
 
 body {
   color: #433529;
+  background-color: #ece0cd;
   font: 16px/1.6 "Muli", sans-serif;
   min-width: 320px;
   -webkit-font-smoothing: antialiased;

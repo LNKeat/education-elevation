@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 import { UserContext } from '../App'
+import studentsPic from '../assets/images/students_image.jpg'
 
 const component = {
   login:"login",
@@ -29,7 +30,7 @@ function Home() {
   }
 
   return (
-    <Container>
+    <Container style={{backgroundColor:"#ece0cd"}}>
       {!user ?
         <div>
           {view === component.login ? (
@@ -45,9 +46,11 @@ function Home() {
             </div>
           )}
         </div> :
-        <Container>
+        <Container style={{backgroundColor:"#ece0cd"}}>
           <h3>Welcome {user.first_name}</h3>
-          <p>welcome message</p>
+          <p>Please consider supporting after school enrichment programs. These programs help children to develop skills that will help them to excel in life. Your donations make these programs possible.</p>
+          <h6>Thank you for your continued support!</h6>
+          <img src={studentsPic} />
         </Container>}
 
 

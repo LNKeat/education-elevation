@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:"#ece0cd"}}>
       <BrowserRouter>
       <UserContext.Provider value={userState}>
       <ProgramsContext.Provider value={programsState}>
