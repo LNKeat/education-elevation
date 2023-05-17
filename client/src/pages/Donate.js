@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/esm/Container';
 // #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
 function Donate({ program }) {
   const [amount, setAmount] = useState(100)
-  const [donationSum, setDonationSum] = useState()
+  const [donationSum, setDonationSum] = useState(0)
   const [initProgram, setInitProgram] = useState(program)
   const [filteredPrograms, setFilteredPrograms] = useState([])
   const [user] = useContext(UserContext)
@@ -14,6 +14,7 @@ function Donate({ program }) {
 
   useEffect(() => {
     user && setDonationSum(user.donations_sum)
+    programs && setInitProgram(programs[0])
     program && setInitProgram(program)
     program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
   }, [user, program, programs])
@@ -42,26 +43,22 @@ function Donate({ program }) {
     })
     .then((r) => {
       if (r.ok) {
-        postUser()
+        patchUser()
       } else {
         r.json().then((details) => console.log("errors: ", details.errors))
       }
     })
   }
 
-  function postUser() {
+  function patchUser() {
     const newSum = donationSum + amount
     console.log("newsum= ", newSum)
     // fetch(`/users/${user.id}`, {
-    //   method: 'POST', 
+    //   method: 'PATCH', 
     //   headers: {
     //     "Content-Type":"application/json", 
     //   },
-    //   body: JSON.stringify({
-    //     user_id: user.id,
-    //     program_id: initProgram.id,
-    //     amount: amount
-    //   }),
+    //   body: JSON.stringify({donations_sum: newSum}),
     // })
     // .then((r) => {
     //   if (r.ok) {
