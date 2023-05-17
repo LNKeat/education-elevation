@@ -28,8 +28,6 @@ function Donate({ program }) {
   function handleSubmit(e) {
     e.preventDefault()
     console.log("Amount: ", amount, "program id: ", initProgram.id, "user id: ", user.id )
-    //post donation to program
-    //post new donations_sum to user
     fetch('/donations', {
       method: 'POST', 
       headers: {
@@ -43,31 +41,15 @@ function Donate({ program }) {
     })
     .then((r) => {
       if (r.ok) {
-        patchUser()
+        r.json()
+        .then((data) => console.log(data))
       } else {
         r.json().then((details) => console.log("errors: ", details.errors))
       }
     })
   }
 
-  function patchUser() {
-    const newSum = donationSum + amount
-    console.log("newsum= ", newSum)
-    // fetch(`/users/${user.id}`, {
-    //   method: 'PATCH', 
-    //   headers: {
-    //     "Content-Type":"application/json", 
-    //   },
-    //   body: JSON.stringify({donations_sum: newSum}),
-    // })
-    // .then((r) => {
-    //   if (r.ok) {
-    //     console.log("response:", r)
-    //   } else {
-    //     r.json().then((details) => console.log("errors: ", details.errors))
-    //   }
-    // })
-  }
+  
   return (
     <Container>
       {user ?

@@ -14,7 +14,6 @@ class DonationsController < ApplicationController
         program.funds_raised = program.find_funds_raised
         donor.save
         program.save
-        byebug
         render json: donation, status: :created
     end
 
