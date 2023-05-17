@@ -2,22 +2,24 @@ import React, { useContext } from 'react'
 import { UserContext } from '../App'
 import Container from 'react-bootstrap/esm/Container'
 
+
 // TODO: thank you message with donor name, donation tier they belong to, donation sum
 
 function Profile() {
   const [user] = useContext(UserContext)
 
   return (
-    <div style={{backgroundColor:"#ece0cd"}}>
+    <Container style={{backgroundColor:"#ece0cd", padding:"20px"}}>
       <h1>Profile</h1>
-      {user && 
+      {user ?
       <Container>
         <h6>Name: {user.first_name} {user.last_name}</h6>
         <h6>Total donations: {user.donations_sum}</h6>
         <h5>Thank you for your {user.donor_tier} donor status!</h5>
-      </Container>
+      </Container> : 
+      <a style={{ color: "#275251", textDecoration: "underline", cursor: "pointer" }} href="/">Please log in or sign up for an account</a>
       }
-    </div>
+    </Container>
   )
 }
 

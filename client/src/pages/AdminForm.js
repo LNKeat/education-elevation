@@ -8,7 +8,7 @@ function AdminForm({ program }) {
   const [filteredPrograms, setFilteredPrograms] = useState([])
   const [programName, setProgramName] = useState("")
   const [programDesc, setProgramDesc] = useState("")
-  const [programFN, setProgramFN] = useState(0)
+  const [fundsNeeded, setfundsNeeded] = useState(0)
   const [teacherID, setTeacherID] = useState(0)
 
   useEffect(() => {
@@ -22,12 +22,14 @@ function AdminForm({ program }) {
     setInitProgram(program)
   }
 
+
   function handleSubmit(e) {
     e.preventDefault()
   }
-  
+
   return (
-    <Container style={{padding:"20px"}}>
+    <Container style={{ padding: "20px" }}>
+      <h2>New Program Form</h2>
       <form onSubmit={handleSubmit}>
         <div className='form-group' styles={{ marginBottom: "20px" }}>
           {/* if the user arrived at the form from program component */}
@@ -41,9 +43,24 @@ function AdminForm({ program }) {
 
             // if the user comes from the admin-page map all programs
             <>
+              {/* new program name */}
               <label htmlFor="Program">Program Name:</label>
-              <input type="text" className="form-control" id="programName" aria-describedby="programName" placeholder="Enter new program name" value={programName} onChange={(e) => setProgramName(e.target.value)} />
-                  
+              <input type="text" id="programName" placeholder="Enter new program name" value={programName} onChange={(e) => setProgramName(e.target.value)} style={{width:"200px"}} />
+
+              {/* program funds needed */}
+              <label style={{ paddingLeft: "10px" }} htmlFor="Program">Funds Needed:</label>
+              <input type="number" id="fundsNeeded" placeholder="Funds needed for program" value={fundsNeeded} onChange={(e) => setProgramName(e.target.value)} style={{width:"200px"}} />
+
+
+              {/* program desription */}
+              <div style={{marginTop:"20px"}}>
+              <label htmlFor="Program">Program Description:</label>
+              <textarea type="text" id="programDesc" placeholder="Enter program description" value={programDesc} onChange={(e) => setProgramDesc(e.target.value)} style={{width:"480px"}} />
+              </div>
+
+
+
+
             </>
           }
           {/* remainder of form */}
