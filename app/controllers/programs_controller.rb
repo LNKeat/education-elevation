@@ -9,6 +9,12 @@ class ProgramsController < ApplicationController
         render json: program, status: :created
     end
 
+    def update
+        program = Program.find_by(id: params[:id])
+        program.update!(params_permit)
+        render json: program, status: 200
+    end
+
     def destroy
         program = Program.find(params[:id])
         program.destroy

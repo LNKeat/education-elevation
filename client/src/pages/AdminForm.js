@@ -15,7 +15,12 @@ function AdminForm({ program }) {
   useEffect(() => {
     programs && setInitProgram(programs[0])
     program && setInitProgram(program)
-    program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
+    program && setProgramName(program.name)
+    program && setProgramDesc(program.description)
+    program && setFundsNeeded(program.funds_needed)
+    program && setTeacherId(program.teacher.id)
+    programs && program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
+    
   }, [program, programs])
 
   function handleSelectChange(e) {
@@ -75,7 +80,8 @@ function AdminForm({ program }) {
               {/* new program name */}
               <label htmlFor="programName">Program Name:</label>
               <input type="text" id="programName" placeholder="Enter new program name" value={programName} onChange={(e) => setProgramName(e.target.value)} style={{width:"200px"}} />
-
+              </>
+          }
               {/* program funds needed */}
               <label style={{ paddingLeft: "10px" }} htmlFor="fundsNeeded">Funds Needed:</label>
               <input type="number" id="fundsNeeded" placeholder="Funds needed for program" value={fundsNeeded} onChange={(e) => setFundsNeeded(e.target.value)} style={{width:"200px"}} />
@@ -93,8 +99,7 @@ function AdminForm({ program }) {
               <label htmlFor="teacherId">Program Teacher:</label>
               <input type="number" id="teacherId" placeholder="Enter Teacher Id" value={teacherId} onChange={(e) => setTeacherId(e.target.value)} />
               </div>
-            </>
-          }
+           
         </div>
         <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
       </form>
