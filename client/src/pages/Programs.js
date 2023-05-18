@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Program from '../components/Program'
 import Container from 'react-bootstrap/esm/Container'
 
-//TODO: map out cards with each program listed and details
-//add donate now button to each card that goes to the donation form
+//TODO: get program info to update once donation or update has been made
 function Programs() {
   const [programs, setPrograms] = useState([])
 

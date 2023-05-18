@@ -6,7 +6,7 @@ import Donate from '../pages/Donate';
 import AdminForm from '../pages/AdminForm';
 
 
-function Program({ program }) {
+function Program({ program, setViewPrograms }) {
     const [viewForm, setViewForm] = useState(false)
     const [viewAdminForm, setViewAdminForm] = useState(false)
 
@@ -18,6 +18,11 @@ function Program({ program }) {
             <Card.Text>
               {program.description}
             </Card.Text>
+            <ul>
+              <li>Teacher: {program.teacher.first_name} {program.teacher.last_name}</li>
+              <li>Funds needed: {program.funds_needed}</li>
+              <li>Funds raised: {program.funds_raised}</li>
+            </ul>
             <Button onClick={() => setViewForm(!viewForm)} style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Donate</Button>
             <Button onClick={() => setViewAdminForm(!viewAdminForm)} style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Update Program</Button>
           </Card.Body>
