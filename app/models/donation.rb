@@ -5,12 +5,12 @@ class Donation < ApplicationRecord
   validates :amount, presence: true
 
   # TODO:add validation here
-  # validate :greater_than_ten
+  validate :donation_min
 
-  # def greater_than_ten
-  #   if self.amount < 10
-  #      self.errors.add("Donation must be $10 or more.")
-  #   end
-  # end
+  def donation_min
+    if self.amount < 10
+       self.errors.add(:amount, "must be $10 or more.")
+    end
+  end
 
 end

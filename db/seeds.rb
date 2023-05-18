@@ -13,6 +13,14 @@ def generate_bio(teacher)
     bio
 end
 
+programs = ["DND for Social Development", "Horse IQ", "Club Soccer", "Debate Debacle"]
+p_descs = [
+    "This popular role playing game is a great way for teenagers that struggle with social cues, etiquette and interactions in general.",
+    "Students will learn to take care of a horse and riding equipment while building lifelong connections with other teens and furry friends alike.",
+    "Great for anyone that loves soccer from beginner to experienced. No try-outs, just come join and play. ",
+    "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
+]
+
 
 # makes 10 users that are not admin
 10.times {
@@ -29,33 +37,43 @@ User.create!(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", p
     teacher.save
 }
 
-# makes 3 programs
-4.times {
+# makes 4 programs
+programs.each do |p|
+    i  = 0
     needed = generate_amount(100)
+   
     t_id = Teacher.all.sample.id 
-    Program.create!(teacher_id: t_id, funds_needed: needed)
-}
+    Program.create!(teacher_id: t_id, funds_needed: needed, name: p, description: p_descs[i])
+    i += 1
+end
 
-    p1 = Program.first
-    p2 = Program.second
-    p3 = Program.third
-    p4 = Program.fourth
 
-    p1.name = "DND for Social Development"
-    p1.description = "This popular role playing game is a great way for teenagers that struggle with social cues, etiquette and interactions in general."
-    p1.save
+# 4.times {
+#     needed = generate_amount(100)
+#     t_id = Teacher.all.sample.id 
+#     Program.create!(teacher_id: t_id, funds_needed: needed)
+# }
 
-    p2.name = "Horse IQ"
-    p2.description = "Students will learn to take care of a horse and riding equipment while building lifelong connections with other teens and furry friends alike."
-    p2.save
+    # p1 = Program.first
+    # p2 = Program.second
+    # p3 = Program.third
+    # p4 = Program.fourth
+
+    # p1.name = "DND for Social Development"
+    # p1.description = "This popular role playing game is a great way for teenagers that struggle with social cues, etiquette and interactions in general."
+    # p1.save
+
+    # p2.name = "Horse IQ"
+    # p2.description = "Students will learn to take care of a horse and riding equipment while building lifelong connections with other teens and furry friends alike."
+    # p2.save
     
-    p3.name = "Club Soccer"
-    p3.description = "Great for anyone that loves soccer from beginner to experienced. No try-outs, just come join and play. "
-    p3.save
+    # p3.name = "Club Soccer"
+    # p3.description = "Great for anyone that loves soccer from beginner to experienced. No try-outs, just come join and play. "
+    # p3.save
 
-    p4.name = "Debate Debacle"
-    p4.description = "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
-    p4.save
+    # p4.name = "Debate Debacle"
+    # p4.description = "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
+    # p4.save
 
 # make donations
     10.times{

@@ -45,7 +45,7 @@ function Donate({ program }) {
           r.json()
             .then((data) => setResponseData(data))
         } else {
-          r.json().then((details) => console.log("errors: ", details.errors))
+          r.json().then((details) => setErrors(details.errors))
         }
       })
   }
