@@ -1,9 +1,9 @@
 class Program < ApplicationRecord
   belongs_to :teacher
-  has_many :donations
+  has_many :donations, dependent: :destroy
 
-  validates :name, presence: true
-  validates :description, presence: true, length: { minimum: 20 }
+  # validates :name, presence: true
+  # validates :description, presence: true, length: { minimum: 10 }
 
   def find_funds_raised
     sum = 0

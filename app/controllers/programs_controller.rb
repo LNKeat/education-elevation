@@ -1,6 +1,6 @@
 class ProgramsController < ApplicationController
     before_action :admin
-    skip_before_action :admin, only: [:index]
+    skip_before_action :admin, only: [:index, :destroy]
 
     def index 
         programs = Program.all 

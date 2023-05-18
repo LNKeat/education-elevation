@@ -13,6 +13,7 @@ def generate_bio(teacher)
     bio
 end
 
+
 # makes 10 users that are not admin
 10.times {
     # donation = generate_amount(10)
