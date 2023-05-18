@@ -7,6 +7,7 @@ import { UserContext } from '../App';
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState([])
     const [_, setUser] = useContext(UserContext)
 
 
@@ -23,7 +24,7 @@ function Login() {
                 r.json().then((user) => setUser(user));
 
             } else {
-                r.json().then((details) => console.log(details.errors))
+                r.json().then((details) => setErrors(details.errors))
             }
             setEmail("")
             setPassword("")
@@ -32,7 +33,7 @@ function Login() {
 
     return (
         <Container>
-            <h4 style={{marginTop:"20px"}}>Please login to your account</h4>
+            <h4 style={{ marginTop: "20px" }}>Please login to your account</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>
@@ -46,7 +47,11 @@ function Login() {
                 </div>
                 <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
             </form>
-            
+            <ul style={{ color: "red" }}>
+                {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                ))}
+            </ul>
         </Container>
     )
 }
