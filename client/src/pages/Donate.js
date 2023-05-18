@@ -9,6 +9,7 @@ function Donate({ program }) {
   const [initProgram, setInitProgram] = useState(program)
   const [filteredPrograms, setFilteredPrograms] = useState([])
   const [responseData, setResponseData] = useState(null)
+  const [errors, setErrors] = useState([])
   const [user] = useContext(UserContext)
   const [programs] = useContext(ProgramsContext)
 
@@ -53,11 +54,11 @@ function Donate({ program }) {
   return (
     <Container>
       {
-        responseData ? 
-        <Container style={{padding:"20px"}}>
-          <h5>Thank you for your donation, {responseData.user.first_name}!</h5>
-          <p>You have donated ${responseData.user.donations_sum} total to our programming and you are part of our {responseData.user.donor_tier} donor tier. Our {responseData.program.name} program now has ${responseData.program.funds_raised} of ${responseData.program.funds_needed} needed.</p>
-        </Container> :
+        responseData ?
+          <Container style={{ padding: "20px" }}>
+            <h5>Thank you for your donation, {responseData.user.first_name}!</h5>
+            <p>You have donated ${responseData.user.donations_sum} total to our programming and you are part of our {responseData.user.donor_tier} donor tier. Our {responseData.program.name} program now has ${responseData.program.funds_raised} of ${responseData.program.funds_needed} needed.</p>
+          </Container> :
           <>
             {user ?
               <>
@@ -95,6 +96,11 @@ function Donate({ program }) {
 
                   <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
                 </form>
+                <ul style={{ color: "red" }}>
+                  {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                  ))}
+                </ul>
               </> : <a href='/' style={{ color: "#275251" }}>Please log in or create an account to donate</a>}
 
             {/* After donation is made:  */}
