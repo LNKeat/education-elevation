@@ -3,8 +3,6 @@ import { UserContext } from '../App'
 import Container from 'react-bootstrap/esm/Container'
 
 
-// TODO: thank you message with donor name, donation tier they belong to, donation sum
-
 function Profile() {
   const [user] = useContext(UserContext)
 

@@ -3,8 +3,6 @@ class Donation < ApplicationRecord
   belongs_to :program
 
   validates :amount, presence: true
-
-  # TODO:add validation here
   validate :donation_min
 
   def donation_min

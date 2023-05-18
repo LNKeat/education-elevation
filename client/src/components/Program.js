@@ -12,7 +12,7 @@ function Program({ program, handleDeleteProgram }) {
   const [viewAdminForm, setViewAdminForm] = useState(false)
   const [user] = useContext(UserContext)
 
-//  TODO: get_donation_response_and_update_progra_card
+//  TODO: get donation response and update program card
 // pass down in props then call on donation submit
 
 

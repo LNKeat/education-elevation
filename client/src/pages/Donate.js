@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import { ProgramsContext, UserContext } from '../App';
 import Container from 'react-bootstrap/esm/Container';
 
-// #TODO: create form with select options that display the list of programs (should highlight the program that was clicked on the "Programs Page, Program compoenent")
 function Donate({ program }) {
   const [amount, setAmount] = useState(100)
   const [donationSum, setDonationSum] = useState(0)

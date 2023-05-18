@@ -2,7 +2,6 @@ import React from 'react'
 import Container from 'react-bootstrap/esm/Container';
 import Card from 'react-bootstrap/Card';
 
-// TODO: get teachers to line up 2 cards per column
 
 function Teacher({ teacher, pic }) {
     return (

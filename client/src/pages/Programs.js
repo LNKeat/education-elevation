@@ -3,8 +3,8 @@ import Program from '../components/Program'
 import Container from 'react-bootstrap/esm/Container'
 import { ProgramsContext } from '../App'
 
-//TODO: get program info to update once donation or update has been made
-//handle error on delete 
+//TODO: get program info to update once delete or update has been made
+//handle error on delete -- related to above
 function Programs() {
   const [programs] = useContext(ProgramsContext)
   const [filteredPrograms, setFilteredPrograms] = useState([])
