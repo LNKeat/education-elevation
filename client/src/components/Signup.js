@@ -7,7 +7,7 @@ const intialState = {
     first_name: "",
     last_name: "",
     email: "",
-    password:"", 
+    password:"",
     password_confirmation:"",
     role:"donor"
 }
@@ -27,22 +27,29 @@ function Signup() {
         });
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault()
-        fetch ('/signup', {
+        fetch('/signup', {
             method: "POST",
             headers: {
-               "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(formData)
         })
-        .then((r) => r.json())
-        .then((user) =>  setUser(user))
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => setUser(user))
+                } else {
+                    r.json().then((details) => setErrors(details.errors))
+                    setFormData(intialState)
+                }
+            })
+
     }
 
     return (
         <Container>
-            <h4 style={{marginTop:"20px"}}>Please create an account</h4>
+            <h4 style={{ marginTop:"20px" }}>Please create an account</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="firstName">First Name</label>
@@ -68,6 +75,11 @@ function Signup() {
 
                 <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
             </form>
+            <ul style={{ color: "red" }}>
+                {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                ))}
+            </ul>
         </Container>
     )
 }

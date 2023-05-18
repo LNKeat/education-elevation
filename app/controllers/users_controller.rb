@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         # user.donor_tier = user.set_tier
         user.role = user.set_admin_role
         user.save
-
+        
         session[:user_id] = user.id
         render json: user
     end

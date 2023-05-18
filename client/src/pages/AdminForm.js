@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { ProgramsContext } from '../App'
+import { ProgramsContext, UserContext } from '../App'
 import Container from 'react-bootstrap/esm/Container'
 
 function AdminForm({ program, setViewPrograms }) {
   const [programs] = useContext(ProgramsContext)
-  const [viewCreate, setViewCreate] = useState(true)
+  const [user] = useContext(UserContext)
   const [initProgram, setInitProgram] = useState(program)
   const [filteredPrograms, setFilteredPrograms] = useState([])
   const [programName, setProgramName] = useState("")
