@@ -4,14 +4,10 @@ class ApplicationController < ActionController::API
 
   private
 
-  def authorize
-    @current_user = Camper.find_by(id: session[:camper_id])
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
-  end
 
   def admin 
-    @current_user = Camper.find_by(id: session[:camper_id])
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user && @current_user.is_admin
+    @current_user = User.find_by(id: session[:user_id])
+    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user && @current_user.role == "admin"
   end
 
   def render_unprocessable_entity_response(object)

@@ -13,6 +13,7 @@ function AdminForm({ program, setViewPrograms }) {
   const [teacherId, setTeacherId] = useState(0)
   const [teachers, setTeachers] = useState([])
   const [viewComplete, setViewComplete] = useState(false)
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     programs && setInitProgram(programs[0])
@@ -60,7 +61,7 @@ function AdminForm({ program, setViewPrograms }) {
             })
           } else {
             r.json()
-              .then((details) => console.log(details.errors))
+              .then((details) => setErrors(details.errors))
           }
         })
     } else {
@@ -90,7 +91,7 @@ function AdminForm({ program, setViewPrograms }) {
               setTeacherId(0)
             })
           } else {
-            r.json().then((data) => console.log("bad response"))
+            r.json().then((details) => setErrors(details.errors))
           }
         })
     }
@@ -98,6 +99,8 @@ function AdminForm({ program, setViewPrograms }) {
 
   return (
     <Container style={{ padding: "20px" }}>
+      {user && user.role == "admin" ? 
+      <>
       {!viewComplete ? <>
         <form onSubmit={handleSubmit}>
           <div className='form-group' styles={{ marginBottom: "20px" }}>
@@ -141,6 +144,15 @@ function AdminForm({ program, setViewPrograms }) {
           </div>
           <button type="submit" className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Submit</button>
         </form>
+
+        {/* error handling */}
+        <ul style={{ color: "red" }}>
+          {errors.map((error, ind) => (
+            <li key={ind}>{error}</li>
+          ))}
+        </ul>
+
+        {/* show list of teachers and ids */}
         {teachers &&
           <Container style={{ margin: "20px" }}>
             <h4>Teacher ids: </h4>
@@ -151,6 +163,11 @@ function AdminForm({ program, setViewPrograms }) {
       </> :
         <h5>Response Recorded</h5>
       }
+      </>
+      :
+      <>
+      <h2>Admin access only beyond this point</h2>
+      </>}
     </Container>
   )
 }

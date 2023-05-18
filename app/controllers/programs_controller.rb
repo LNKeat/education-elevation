@@ -1,4 +1,7 @@
 class ProgramsController < ApplicationController
+    before_action :admin
+    skip_before_action :admin, only: [:index]
+
     def index 
         programs = Program.all 
         render json: programs
