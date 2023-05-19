@@ -21,8 +21,9 @@ function Teachers() {
   
 
   return (
-    <Container fluid style={{ padding: "20px" }}>
+    <Container fluid style={{ padding: "20px", justifyContent:"center" }}>
         <h1>Teachers</h1>
+
         {teachers.map(( (t, ind) =>
           <Teacher key={ind} teacher={t} pic={teachers_images[ind] } />
         ))}

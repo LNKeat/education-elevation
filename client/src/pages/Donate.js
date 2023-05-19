@@ -10,7 +10,7 @@ function Donate({ program }) {
   const [responseData, setResponseData] = useState(null)
   const [errors, setErrors] = useState([])
   const [user] = useContext(UserContext)
-  const [programs] = useContext(ProgramsContext)
+  const [programs, setPrograms] = useContext(ProgramsContext)
 
 
   useEffect(() => {
@@ -18,7 +18,20 @@ function Donate({ program }) {
     programs && setInitProgram(programs[0])
     program && setInitProgram(program)
     program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
-  }, [user, program, programs])
+  }, [user, program])
+
+  useEffect(() => {
+    if (responseData) {
+       const newPrograms = programs.map((p) => {
+        return {
+          ...p, 
+          funds_raised: (p.id === responseData.program.id) ? responseData.program.funds_raised : p.funds_raised
+        }
+      })
+      setPrograms(newPrograms)
+    }
+
+  }, [responseData])
 
   function handleSelectChange(e) {
     const program = programs.find((p) => p.id == e.target.value)

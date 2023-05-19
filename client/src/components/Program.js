@@ -12,11 +12,6 @@ function Program({ program, handleDeleteProgram }) {
   const [viewAdminForm, setViewAdminForm] = useState(false)
   const [user] = useContext(UserContext)
 
-//  TODO: get donation response and update program card
-// pass down in props then call on donation submit
-
-
-
   return (
     <Container fluid>
       <Card style={{ width: '18rem', margin: "20px", width: "95%" }}>

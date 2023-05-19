@@ -3,15 +3,14 @@ import Program from '../components/Program'
 import Container from 'react-bootstrap/esm/Container'
 import { ProgramsContext } from '../App'
 
-//TODO: get program info to update once delete or update has been made
-//handle error on delete -- related to above
+
 function Programs() {
-  const [programs] = useContext(ProgramsContext)
-  const [filteredPrograms, setFilteredPrograms] = useState([])
+  const [programs, setPrograms] = useContext(ProgramsContext)
   const [deleteErrors, setDeleteErrors] = useState([])
 
   useEffect(() => {
-    programs && setFilteredPrograms(programs)
+    console.log('programs', programs)
+    programs && setPrograms(programs)
   }, [programs])
 
 
@@ -21,7 +20,7 @@ function Programs() {
     }).then((r) => {
       if (r.ok) {
         console.log('delete worked')
-        setFilteredPrograms(programs.filter((p) => p.id !== program.id))
+        setPrograms(programs.filter((p) => p.id !== program.id))
       } else {
         r.json().then((details) => setDeleteErrors(details.errors))
       }
@@ -31,7 +30,7 @@ function Programs() {
   return (
     <Container style={{ padding: "20px" }}>
       <h1>Programs</h1>
-      {programs ? filteredPrograms.map((p) => <Program key={p.id} program={p} programs={programs} handleDeleteProgram={handleDeleteProgram} />) : <>not working</>}
+      {programs ? programs.map((p) => <Program key={p.id} program={p} handleDeleteProgram={handleDeleteProgram} />) : <>not working</>}
       <ul style={{ color: "red" }}>
         {deleteErrors.map((error, ind) => (
           <li key={ind}>{error}</li>
