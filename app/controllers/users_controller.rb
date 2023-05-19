@@ -7,8 +7,8 @@ class UsersController < ApplicationController
  #sign-up & set session to user
     def create
         user = User.create!(user_params)
-        # user.donations_sum = user.find_donations_sum
-        # user.donor_tier = user.set_tier
+        user.donations_sum = user.find_donations_sum
+        user.donor_tier = user.set_tier
         user.role = user.set_admin_role
         user.save
         
