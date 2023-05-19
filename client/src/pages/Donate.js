@@ -6,7 +6,7 @@ function Donate({ program }) {
   const [amount, setAmount] = useState(100)
   const [donationSum, setDonationSum] = useState(0)
   const [initProgram, setInitProgram] = useState(program)
-  const [filteredPrograms, setFilteredPrograms] = useState([])
+  // const [filteredPrograms, setFilteredPrograms] = useState([])
   const [responseData, setResponseData] = useState(null)
   const [errors, setErrors] = useState([])
   const [user] = useContext(UserContext)
@@ -17,7 +17,7 @@ function Donate({ program }) {
     user && setDonationSum(user.donations_sum)
     programs && setInitProgram(programs[0])
     program && setInitProgram(program)
-    program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
+    // program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
   }, [user, program])
 
   useEffect(() => {
@@ -35,11 +35,12 @@ function Donate({ program }) {
 
   function handleSelectChange(e) {
     const program = programs.find((p) => p.id == e.target.value)
-    setInitProgram(program)
+    program ? setInitProgram(program) : setInitProgram(programs[0])
   }
 
 
   function handleSubmit(e) {
+  
     e.preventDefault()
     fetch('/donations', {
       method: 'POST',

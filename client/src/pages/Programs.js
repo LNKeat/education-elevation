@@ -9,7 +9,6 @@ function Programs() {
   const [deleteErrors, setDeleteErrors] = useState([])
 
   useEffect(() => {
-    console.log('programs', programs)
     programs && setPrograms(programs)
   }, [programs])
 
