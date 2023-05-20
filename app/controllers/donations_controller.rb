@@ -15,7 +15,6 @@ class DonationsController < ApplicationController
         donor.save
         program.save
         #kicks off donation email
-        
         DonationMailer.with(donation: donation).donation_email.deliver_now
         
         render json: donation, status: :created
