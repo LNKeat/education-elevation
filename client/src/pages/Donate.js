@@ -18,7 +18,6 @@ function Donate({ program }) {
     user && setDonationSum(user.donations_sum)
     programs && setInitProgram(programs[0])
     program && setInitProgram(program)
-    // program && setFilteredPrograms(programs.filter((p) => p.id !== program.id))
   }, [user, program])
 
   useEffect(() => {
