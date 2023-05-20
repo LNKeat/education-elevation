@@ -6,7 +6,6 @@ function Donate({ program }) {
   const [amount, setAmount] = useState(100)
   const [donationSum, setDonationSum] = useState(0)
   const [initProgram, setInitProgram] = useState(program)
-  // const [filteredPrograms, setFilteredPrograms] = useState([])
   const [responseData, setResponseData] = useState(null)
   const [errors, setErrors] = useState([])
   const [user] = useContext(UserContext)
