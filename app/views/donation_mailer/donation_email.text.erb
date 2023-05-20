@@ -1,0 +1,8 @@
+Welcome to Education Elevation, <%= @user.first_name %>
+===============================================
+
+You have successfully donated to the <%= @user.donations.last.program.name %> program.
+You have donated $<%= @user.donations_sum %> and are a part of our <%= @user.donor_tier %> donor tier.<br>
+Thank you for your support.
+
+Have a great day!

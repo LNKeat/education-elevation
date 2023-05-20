@@ -14,14 +14,20 @@ class DonationsController < ApplicationController
         program.funds_raised = program.find_funds_raised
         donor.save
         program.save
+        #kicks off donation email
+        send_thank_you(donation)
         render json: donation, status: :created
     end
 
-    # def destroy
-    #     donation = Donation.find(params[:id])
-    #     donation.destroy
-    #     head :no_content
-    # end
+    def send_thank_you(donation)
+        #call method in create action
+        user = donation.user
+    
+        respond_to do |format|
+            # Tell the UserMailer to send a thank you email after save
+            UserMailer.with(donation: donation).donation_email.deliver_later
+        end
+      end
 
     private
 
