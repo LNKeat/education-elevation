@@ -15,23 +15,16 @@ class DonationsController < ApplicationController
         donor.save
         program.save
         #kicks off donation email
-        send_thank_you(donation)
+        
+        DonationMailer.with(donation: donation).donation_email.deliver_now
+        
         render json: donation, status: :created
     end
 
-    def send_thank_you(donation)
-        #call method in create action
-        user = donation.user
-    
-        respond_to do |format|
-            # Tell the UserMailer to send a thank you email after save
-            UserMailer.with(donation: donation).donation_email.deliver_later
-        end
-      end
 
     private
 
     def params_permit
-        params.permit(:amount, :user_id, :program_id)
+        params.require(:donation).permit(:amount, :user_id, :program_id)
     end
 end

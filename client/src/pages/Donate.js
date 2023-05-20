@@ -12,6 +12,7 @@ function Donate({ program }) {
   const [user] = useContext(UserContext)
   const [programs, setPrograms] = useContext(ProgramsContext)
 
+  // TODO: fix selecting first item in drop-down failed submit
 
   useEffect(() => {
     user && setDonationSum(user.donations_sum)

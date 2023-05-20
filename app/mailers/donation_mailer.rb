@@ -1,9 +1,8 @@
 class DonationMailer < ApplicationMailer
-    default from: 'notifications@example.com'
 
   def donation_email
-    @user = params[:user]
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Your generous donation')
+    donation = params[:donation]
+    @user = donation.user
+    mail(to: @user.email, subject: 'Thank you for your donation')
   end
 end
