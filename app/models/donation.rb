@@ -7,7 +7,7 @@ class Donation < ApplicationRecord
 
   def donation_min
     if self.amount < 10
-       self.errors.add(:amount, "must be $10 or more.")
+      self.errors.add(:donation, "minimum is $10")
     end
   end
 

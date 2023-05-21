@@ -6,7 +6,6 @@ import TeacherTwo from '../assets/images/Teacher_2.jpg'
 import TeacherThree from '../assets/images/Teacher_3.jpg'
 import TeacherFour from '../assets/images/Teacher_4.jpg'
 
-//TODO: fix container to show multiple cards per line
 
 const teachers_images = [TeacherOne, TeacherTwo, TeacherFour, TeacherThree]
 

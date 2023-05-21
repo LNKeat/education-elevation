@@ -39,7 +39,6 @@ function Donate({ program }) {
 
 
   function handleSubmit(e) {
-  
     e.preventDefault()
     fetch('/donations', {
       method: 'POST',
