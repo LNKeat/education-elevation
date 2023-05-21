@@ -15,9 +15,9 @@ function Donate({ program }) {
 
   useEffect(() => {
     user && setDonationSum(user.donations_sum)
-    programs && setInitProgram(programs[0])
+    programs ? setInitProgram(programs[0]) : setInitProgram(null)
     program && setInitProgram(program)
-  }, [user, program])
+  }, [user, program, programs])
 
   useEffect(() => {
     if (responseData) {
@@ -40,6 +40,7 @@ function Donate({ program }) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    if (initProgram){
     fetch('/donations', {
       method: 'POST',
       headers: {
@@ -59,6 +60,7 @@ function Donate({ program }) {
           r.json().then((details) => setErrors(details.errors))
         }
       })
+    } else {console.log("no request sent")}
   }
 
 
