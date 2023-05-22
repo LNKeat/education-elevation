@@ -20,6 +20,7 @@ p_descs = [
     "Great for anyone that loves soccer from beginner to experienced. No try-outs, just come join and play. ",
     "Students will work on public speaking and reasoning under stress in a challenging but friendly environment."
 ]
+program_index  = 0
 
 
 # makes 10 users that are not admin
@@ -39,12 +40,11 @@ User.create!(first_name: "Laura", last_name: "Keat", email: "laura@laura.com", p
 
 # makes 4 programs
 programs.each do |p|
-    i  = 0
     needed = generate_amount(100)
    
     t_id = Teacher.all.sample.id 
-    Program.create!(teacher_id: t_id, funds_needed: needed, name: p, description: p_descs[i])
-    i += 1
+    Program.create!(teacher_id: t_id, funds_needed: needed, name: p, description: p_descs[program_index])
+    program_index += 1
 end
 
 
