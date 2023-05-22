@@ -22,8 +22,8 @@ function Program({ program, handleDeleteProgram }) {
           </Card.Text>
           <ul>
             <li>Teacher: {program.teacher.first_name} {program.teacher.last_name}</li>
-            <li>Funds needed: {program.funds_needed}</li>
-            <li>Funds raised: {program.funds_raised}</li>
+            <li>Funds needed: ${program.funds_needed}</li>
+            <li>Funds raised: ${program.funds_raised}</li>
           </ul>
           <Button onClick={() => setViewForm(!viewForm)} style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>Donate</Button>
 

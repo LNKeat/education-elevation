@@ -52,3 +52,7 @@ group :test do
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+
+gem "dotenv", "~> 2.8"
+
+gem "dotenv-rails", "~> 2.8"
