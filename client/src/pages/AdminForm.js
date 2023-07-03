@@ -170,7 +170,12 @@ function AdminForm({ program, setViewPrograms }) {
                 </ul>
               </Container>}
           </> :
-            <h5>Response Recorded</h5>
+            <div>
+              <h5>Response Recorded</h5>
+              <a href="/programs">
+              <button className="btn" style={{ backgroundColor: "#275251", color: "#ece0cd", margin: "5px" }}>View Programs</button>
+              </a>
+            </div>
           }
         </>
         :
